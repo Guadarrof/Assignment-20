@@ -91,9 +91,18 @@ function validateEmail(mail){
 
 //Validate Password
 
-function testPass(pass){
-    let regex = new RegExp("^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$");
-    return (regex.test(pass));
+function testPass(pass){ 
+    let regex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
+    if (!regex.test(pass)) {
+        if (!/(?=.*[@$!%*#?&])/.test(pass)) {
+            return "missingSymbol";
+        } else if (!/(?=.*\d)/.test(pass)) {
+            return "missingNumber";
+        } else {
+            return "invalidFormat";
+        }
+    }
+    return "valid";
 }
 
 function validatePassword(pass){
@@ -101,11 +110,20 @@ function validatePassword(pass){
         let mensaje="Este campo es Obligatorio.";
         mostrarMensajeError(passwordError,mensaje);
     }else{
-        if(!testPass(pass)){
-            let mensaje="Este campo debe contener 8 caracteres con al menos una mayuscula y un simbolo";
-            mostrarMensajeError(passwordError,mensaje); 
-        }else{
-            limpiarMensajeError(passwordError);
+        const testResult = testPass(pass);
+        switch (testResult) {
+            case "missingSymbol":
+                mostrarMensajeError(passwordError, "La contraseña debe contener al menos un símbolo.");
+                break;
+            case "missingNumber":
+                mostrarMensajeError(passwordError, "La contraseña debe contener al menos un número.");
+                break;
+            case "invalidFormat":
+                mostrarMensajeError(passwordError, "La contraseña debe contener 8 caracteres.");
+                break;
+            default:
+                limpiarMensajeError(passwordError);
+                break;
         }
     }
 }
