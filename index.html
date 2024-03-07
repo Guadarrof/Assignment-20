@@ -3,9 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Assignment</title>
+    <title>Assignment 20</title>
+    <link rel="stylesheet" href="./index.css">
 </head>
 <body>
+    <header>
+        <div class="navbar"> 
+            <h1 class="navbar_title">User Register</h1>
+        </div>
+    </header>
+    <main>
+        <form action="submit" onsubmit="" class="form">
+            <h2 class="form_h2">Datos de usuario</h2>
+            <div class="form_content">
+                <div class="form_group">
+                    <label for="nameForm" class="form__label" id="label-name">User Name</label>
+                    <input type="text" class="form__input" name="name" id="nameForm">    
+                    <p class="form_p" id="nameError"></p>
+                </div>
+                <div class="form_group">
+                    <label for="emailForm" class="form__label" id="label-email">Email</label>
+                    <input type="email" class="form__input" name="email" id="emailForm">
+                    <p class="form_p" id="emailError"></p>
+                </div>
+                <div class="form_group">
+                    <label for="passForm" class="form__label" id="label-pass">Password</label>
+                    <input type="password" class="form__input" name="password" id="passForm"></input>
+                    <p class="form_p" id="passError"></p>
+                </div>
+            </div>
+            <div class="form_button">
+                <button class="btn" type="submit" id="btnAddUser">Create user</button>
+            </div>
+        </form>
+        <div class="userList" id="userTarget">
+            <table class="table" id="table">
+                <thead>
+                    <tr class="table_row" id="tableTitle">
+                        <th class="table_title">Users</th>
+                        <th class="table_title">Email</th>
+                    </tr>
+                </thead>
+                <tbody id="tableBody">
+
+                </tbody>
+            </table>
+        </div>
+    </main>
+    <script src="./index.js"></script>
     
 </body>
 </html>
